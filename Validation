@@ -1,4 +1,6 @@
-#Graph Theory and Integer Partitions
+#Component Order Edge Connectivity
+
+#Python Function, looks for graphs that satisfy the condition k-1 
 def edge_0_connectivity(n,k):
     lists = []
     temp = []
@@ -81,124 +83,7 @@ def test(list, index):
         index += 1
     return list
 
-#Graph Theory and Integer Partitions
-def edge_0_connectivity(n,k):
-    lists = []
-    temp = []
-    temp_n = n
-    while temp_n > k-1:
-        temp.append(k-1)
-        temp_n -= k-1
-    temp.append(temp_n)
-    lists.append(list(temp))
-    i = len(temp)-1
-    while i>=0 and n%(k-1) != 0:
-        temp[len(temp)-1] = temp[len(temp)-1]+1
-        temp[i-1] = temp[i-1]-1
-        temp = sorted(temp,reverse=True)
-        if temp in lists:
-            i-=1
-        else:
-            lists.append(list(temp))
-    return lists
 
-def edge_1_connectivity(lists):
-    expend = []
-    for i in lists:
-        temp = []
-        for j in i:
-            for k in range(j):
-                temp.append(j-1)
-        expend.append(temp)
-    final_list = []
-    for i in range(len(expend)):
-        temp = set(expend[i])
-        temp = sorted(temp, reverse=True)
-        a = 0
-        for j in temp:
-            b = expend[i].index(j)
-            if expend[i].count(j)/(j+1) > 1:
-                temp_list = list(expend[i])
-                temp_list[a] += 1
-                temp_list[a+1] += 1
-                final_list.append(temp_list)
-            if j != temp[len(temp)-1]:
-                value = temp[temp.index(j)+1:]
-                b += expend[i].count(j)
-                for k in range(len(value)):
-                    temp_list = list(expend[i])
-                    temp_list[a] += 1
-                    temp_list[b] += 1
-                    final_list.append(temp_list)
-                    b += expend[i].count(temp[k+1])
-            a += expend[i].count(j)
-    return final_list
-
-def simple_graph(lists):
-    final_list = []
-    for i in lists:
-        temp = []
-        for j in sorted(set(i)):
-            temp.append(f'{j}({i.count(j)})')
-        final_list.append(temp)
-    return final_list
-
-def compare(list_1, list_2, index):
-    if len(list_1) == index:
-        return -1
-    elif list_1[index] < list_2[index]:
-        return index
-    return compare(list_1,list_2,index+1)
-
-def test(list, index):
-    while index < len(list)-index:
-        for i in range(len(list)-index-1):
-            if compare(list[index],list[index+i+1],0) != -1 and compare(list[index+i+1], list[index],0) == -1:
-                a = simple_graph([list.pop(index)])
-                print(f'Remove: {a[0]}')
-                return test(list, index)
-            if compare(list[index],list[index+i+1],0) == -1 and compare(list[index+i+1], list[index],0) != -1:
-                a = simple_graph([list.pop(index+i+1)])
-                print(f'Removed: {a[0]}')
-                return test(list, index)
-        index += 1
-    return list
-
-
-if __name__ == '__main__':
-    n = int(input("Vertices - "))
-    k = int(input("Component - "))
-    #n = (k-2)*(k-2) + 2*(k-1)
-    #print(f'Vertices - {n}')
-
-    lists = edge_0_connectivity(n,k)
-    print()
-    print('0 Edge Connectivity -')
-    for i in lists:
-        print(i)
-    print()
-    a = list(lists)
-    a = simple_graph(a)
-    for i in a:
-        print(i)
-    print()
-    final_list = edge_1_connectivity(lists)
-    print('1 Edge Connectivity -')
-    for i in final_list:
-        print(i)
-    print()
-    print('Simple -')
-    simple = simple_graph(final_list)
-    for i in simple:
-        print(i)
-    print()
-    major = list(final_list)
-    major = test(major, 0)
-    major = simple_graph(major)
-    print()
-    print('Major -')
-    for i in major:
-        print(i)
 if __name__ == '__main__':
     n = int(input("Vertices - "))
     k = int(input("Component - "))
