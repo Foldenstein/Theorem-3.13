@@ -1,8 +1,11 @@
 Undergraduate Research Student Kenneth Huang computer program that provided validation for Theorem 3.13.
 # Theorem-3.13
 The program will ask the user the value of Vertices and Component
+
   Example: 
+
   Vertices - 31 
+  
   Component - 6
   
 The program will calculate and display graph(s) of 0-edge connectivity
