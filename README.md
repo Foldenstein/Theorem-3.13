@@ -102,4 +102,31 @@ The program will also calculate and display graph(s) of 1-edge connectivity
   <br />
   ['3(14)', '4(17)']
 
-  The program will remove
+  The program will remove:
+  <br />
+  ['1(2)', '3(3)', '4(25)', '5(1)']
+  <br />
+  ['1(1)', '2(1)', '3(4)', '4(24)', '5(1)']
+  <br /> 
+  ['1(1)', '2(1)', '3(3)', '4(26)']
+
+  As these graphs' connection are less than another 1-edge connectivity graph
+  
+  For example:
+  <br />
+  Compare these two 1-edge connectivity grpahs
+  <br />
+  ['1(1)', '4(29)', '5(1)'] (name this g1)
+  <br />
+  ['1(2)', '3(3)', '4(25)', '5(1)'] (name this g2)
+  <br />
+  g1 | g2
+  <br />
+   1 = 1
+  <br />
+   4 > 1
+  <br />
+   4 = 3
+  ... (we can see and prove that g1 connection is greater than g2 connection) ...
+  <br />
+  g2 graph is removed
