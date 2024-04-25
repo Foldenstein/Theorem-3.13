@@ -126,7 +126,7 @@ The program will also calculate and display graph(s) of 1-edge connectivity
   <br />
    4 > 1
   <br />
-   4 = 3
+   4 > 3
   ... (we can see and prove that g1 connection is greater than g2 connection) ...
   <br />
   g2 graph is removed
